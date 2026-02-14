@@ -6,8 +6,11 @@ export class BAEContextMenu {
 
             const menu = document.createElement("div");
             menu.className = "bae-menu";
-            menu.style.left = e.pageX + "px";
-            menu.style.top = e.pageY + "px";
+
+            // Position it at mouse location
+            menu.style.position = "fixed";
+            menu.style.left = e.clientX + "px";
+            menu.style.top = e.clientY + "px";
 
             menu.innerHTML = `
                 <div data-action="about">About ▸</div>
@@ -15,6 +18,7 @@ export class BAEContextMenu {
                 <div data-action="text">Copy Plain Text</div>
             `;
 
+            // Click events for menu items
             menu.addEventListener("click", ev => {
                 const action = ev.target.dataset.action;
                 if (!action) return;
@@ -26,13 +30,19 @@ export class BAEContextMenu {
                 this.remove();
             });
 
+            // Append to body so it floats above everything
             document.body.appendChild(menu);
-        });
 
-        document.addEventListener("click", this.remove);
+            // Remove menu if you click anywhere else
+            setTimeout(() => {
+                document.addEventListener("click", this.remove, { once: true });
+            }, 0);
+        });
     }
 
-    static remove() { document.querySelectorAll(".bae-menu").forEach(m => m.remove()); }
+    static remove() {
+        document.querySelectorAll(".bae-menu").forEach(m => m.remove());
+    }
 }
 
 export class BAESelection {
@@ -46,6 +56,7 @@ export class BAESelection {
             const rect = sel.getRangeAt(0).getBoundingClientRect();
             const tip = document.createElement("div");
             tip.className = "bae-tooltip";
+            tip.style.position = "fixed";
             tip.style.left = rect.left + "px";
             tip.style.top = rect.top - 30 + "px";
             tip.textContent = "Highlight";
@@ -60,5 +71,7 @@ export class BAESelection {
         });
     }
 
-    static removeTooltip() { document.querySelectorAll(".bae-tooltip").forEach(t => t.remove()); }
+    static removeTooltip() {
+        document.querySelectorAll(".bae-tooltip").forEach(t => t.remove());
+    }
 }
