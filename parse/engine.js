@@ -17,21 +17,23 @@ export class BasicAritEngine {
     }
 
     static parse(expr) {
-        let html = expr;
+    let html = expr;
 
-        html = html.replace(/(\d+)\s*\/\s*(\d+)/g, `
-            <span class="fraction">
-                <span class="top">$1</span>
-                <span class="bar"></span>
-                <span class="bottom">$2</span>
-            </span>
-        `);
+    // 1️⃣ Operators FIRST (only on raw text)
+    html = html
+        .replace(/\*/g, "×")
+        .replace(/-/g, "−");
 
-        html = html
-            .replace(/\*/g, "×")
-            .replace(/\//g, "÷")
-            .replace(/-/g, "−");
+    // 2️⃣ Fractions LAST (so HTML is final)
+    html = html.replace(/(\d+)\s*\/\s*(\d+)/g, `
+        <span class="fraction">
+            <span class="top">$1</span>
+            <span class="bar"></span>
+            <span class="bottom">$2</span>
+        </span>
+    `);
 
-        return html;
-    }
+    return html;
+}
+
 }
