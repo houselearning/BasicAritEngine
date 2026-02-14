@@ -1,4 +1,4 @@
-class BAEContextMenu {
+export class BAEContextMenu {
     static attach(el) {
         el.addEventListener("contextmenu", e => {
             e.preventDefault();
@@ -20,7 +20,7 @@ class BAEContextMenu {
                 if (!action) return;
 
                 if (action === "about") {
-                    alert("BasicAritEngine v2\nLightweight arithmetic renderer");
+                    alert("BasicAritEngine v2");
                 }
 
                 if (action === "html") {
@@ -45,15 +45,15 @@ class BAEContextMenu {
     }
 }
 
-class BAESelection {
+export class BAESelection {
     static attach(el) {
-        el.addEventListener("mouseup", e => {
-            const selection = window.getSelection();
-            if (!selection.toString()) return;
+        el.addEventListener("mouseup", () => {
+            const sel = window.getSelection();
+            if (!sel.toString()) return;
 
             this.removeTooltip();
 
-            const rect = selection.getRangeAt(0).getBoundingClientRect();
+            const rect = sel.getRangeAt(0).getBoundingClientRect();
             const tip = document.createElement("div");
             tip.className = "bae-tooltip";
             tip.style.left = rect.left + "px";
@@ -74,6 +74,3 @@ class BAESelection {
         document.querySelectorAll(".bae-tooltip").forEach(t => t.remove());
     }
 }
-
-window.BAEContextMenu = BAEContextMenu;
-window.BAESelection = BAESelection;
