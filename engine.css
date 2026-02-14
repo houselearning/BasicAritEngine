@@ -3,17 +3,9 @@
     cursor: default;
 }
 
-.bae-root[data-font="math"] {
-    font-family: "Times New Roman", serif;
-}
-
-.bae-root[data-font="arial"] {
-    font-family: Arial, sans-serif;
-}
-
-.bae-root[data-font="code"] {
-    font-family: Consolas, monospace;
-}
+.bae-root[data-font="math"] { font-family: "Times New Roman", serif; }
+.bae-root[data-font="arial"] { font-family: Arial, sans-serif; }
+.bae-root[data-font="code"] { font-family: Consolas, monospace; }
 
 .fraction {
     display: inline-flex;
@@ -34,6 +26,11 @@
     margin: 2px 0;
 }
 
+sup {
+    font-size: 0.7em;
+    vertical-align: super;
+}
+
 /* Context Menu */
 .bae-menu {
     position: fixed;
@@ -45,15 +42,8 @@
     z-index: 9999;
     box-shadow: 0 6px 20px rgba(0,0,0,.4);
 }
-
-.bae-menu div {
-    padding: 6px 14px;
-    cursor: pointer;
-}
-
-.bae-menu div:hover {
-    background: #333;
-}
+.bae-menu div { padding: 6px 14px; cursor: pointer; }
+.bae-menu div:hover { background: #333; }
 
 /* Tooltip */
 .bae-tooltip {
