@@ -17,13 +17,15 @@ inspired by MathJax, but designed for simplicity, speed, and education.
 
 ## Usage
 ```html
-<link rel="stylesheet" href="engine.css">
-<script src="menu.js"></script>
-<script src="parse/engine.js"></script>
+<script type="module" src="https://www.houselearning.org/BasicAritEngine/plugin.js"></script>
 
-<p class="arit">3/4 + 2 * (5 - 1)</p>
+<p class="arit">
+  3/4 + 2 * (6 - 1)
+</p>
 
-<script>
+<script type="module">
+import BasicAritEngine from "https://www.houselearning.org/BasicAritEngine/plugin.js";
+
 BasicAritEngine.render(".arit", {
     size: "1.6em",
     color: "#222",
