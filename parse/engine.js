@@ -17,23 +17,32 @@ export class BasicAritEngine {
     }
 
     static parse(expr) {
-    let html = expr;
+        let html = expr;
 
-    // 1️⃣ Operators FIRST (only on raw text)
-    html = html
-        .replace(/\*/g, "×")
-        .replace(/-/g, "−");
+        // 1️⃣ Escape HTML
+        html = html.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
-    // 2️⃣ Fractions LAST (so HTML is final)
-    html = html.replace(/(\d+)\s*\/\s*(\d+)/g, `
-        <span class="fraction">
-            <span class="top">$1</span>
-            <span class="bar"></span>
-            <span class="bottom">$2</span>
-        </span>
-    `);
+        // 2️⃣ Operators first
+        html = html
+            .replace(/\*/g, "×")
+            .replace(/-/g, "−")
+            .replace(/\+/g, "+");
 
-    return html;
-}
+        // 3️⃣ Exponents: a^b -> a<sup>b</sup>
+        html = html.replace(/(\d+|\w+)\^(\d+|\w+)/g, "$1<sup>$2</sup>");
 
+        // 4️⃣ Roots: sqrt(...) -> √(...)
+        html = html.replace(/sqrt\((.*?)\)/g, "√($1)");
+
+        // 5️⃣ Fractions: a/b -> stacked
+        html = html.replace(/(\d+)\s*\/\s*(\d+)/g, `
+            <span class="fraction">
+                <span class="top">$1</span>
+                <span class="bar"></span>
+                <span class="bottom">$2</span>
+            </span>
+        `);
+
+        return html;
+    }
 }
