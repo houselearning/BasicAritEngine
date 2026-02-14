@@ -1,4 +1,4 @@
-class BasicAritEngine {
+export class BasicAritEngine {
     static render(selector = ".arit", options = {}) {
         document.querySelectorAll(selector).forEach(el => {
             el.classList.add("bae-root");
@@ -11,15 +11,14 @@ class BasicAritEngine {
             el.dataset.raw = raw;
             el.innerHTML = this.parse(raw);
 
-            BAEContextMenu.attach(el);
-            BAESelection.attach(el);
+            this._menu.attach(el);
+            this._selection.attach(el);
         });
     }
 
     static parse(expr) {
         let html = expr;
 
-        // Fractions (basic)
         html = html.replace(/(\d+)\s*\/\s*(\d+)/g, `
             <span class="fraction">
                 <span class="top">$1</span>
@@ -28,7 +27,6 @@ class BasicAritEngine {
             </span>
         `);
 
-        // Operators
         html = html
             .replace(/\*/g, "×")
             .replace(/\//g, "÷")
@@ -37,5 +35,3 @@ class BasicAritEngine {
         return html;
     }
 }
-
-window.BasicAritEngine = BasicAritEngine;
