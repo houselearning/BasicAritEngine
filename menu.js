@@ -15,24 +15,16 @@ export class BAEContextMenu {
                 <div data-action="text">Copy Plain Text</div>
             `;
 
-            menu.onclick = ev => {
+            menu.addEventListener("click", ev => {
                 const action = ev.target.dataset.action;
                 if (!action) return;
 
-                if (action === "about") {
-                    alert("BasicAritEngine v2");
-                }
-
-                if (action === "html") {
-                    navigator.clipboard.writeText(el.innerHTML);
-                }
-
-                if (action === "text") {
-                    navigator.clipboard.writeText(el.dataset.raw);
-                }
+                if (action === "about") alert("BasicAritEngine v2 — Math Renderer with fractions, exponents, roots");
+                if (action === "html") navigator.clipboard.writeText(el.innerHTML);
+                if (action === "text") navigator.clipboard.writeText(el.dataset.raw);
 
                 this.remove();
-            };
+            });
 
             document.body.appendChild(menu);
         });
@@ -40,9 +32,7 @@ export class BAEContextMenu {
         document.addEventListener("click", this.remove);
     }
 
-    static remove() {
-        document.querySelectorAll(".bae-menu").forEach(m => m.remove());
-    }
+    static remove() { document.querySelectorAll(".bae-menu").forEach(m => m.remove()); }
 }
 
 export class BAESelection {
@@ -70,7 +60,5 @@ export class BAESelection {
         });
     }
 
-    static removeTooltip() {
-        document.querySelectorAll(".bae-tooltip").forEach(t => t.remove());
-    }
+    static removeTooltip() { document.querySelectorAll(".bae-tooltip").forEach(t => t.remove()); }
 }
