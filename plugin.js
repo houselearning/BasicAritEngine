@@ -4,7 +4,7 @@ import { BAEContextMenu, BAESelection } from "./menu.js";
 /* ---------- Inject CSS ---------- */
 const link = document.createElement("link");
 link.rel = "stylesheet";
-link.href = "./engine.css";
+link.href = "https://www.houselearning.org/BasicAritEngine/engine.css";
 document.head.appendChild(link);
 
 /* ---------- Wire dependencies ---------- */
