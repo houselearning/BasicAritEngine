@@ -13,7 +13,7 @@ inspired by MathJax, but designed for simplicity, speed, and education.
 - Selection tooltip with RGB info
 
 ## Example
-👉 [pages.houselearning.org/qWTQsu11UzUC8iCke3eb](pages.houselearning.org/qWTQsu11UzUC8iCke3eb)
+👉 [pages.houselearning.org/qWTQsu11UzUC8iCke3eb](https://pages.houselearning.org/qWTQsu11UzUC8iCke3eb)
 
 ## Usage
 ```html
